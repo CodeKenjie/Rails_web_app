@@ -38,9 +38,18 @@
     <ul class="flex flex-col flex-1 overflow-auto gap-2">
       <% @product.comments.each do |comment|%>
         <li class="border-1 border-gray-300 rounded-xl shadow p-2">
-          <div class="flex flex-wrap gap-2 text-2xl">
+          <div class="flex flex-wrap gap-2 text-2xl justify-between items-center">
             <%= comment.user.email_address %>
             <%= comment.user.is_seller ? "Seller" : "Buyer" %>
+            <% if Current.user&.email_address == comment.user.email_address%>
+              <%= 
+                button_to "Delete",
+                product_comments_path(@product, comment),
+                method: :delete,
+                data: {turbo_confirm: "are you sure you want to delete #{comment.title}"},
+                class: "w-[4em] h-fit text-md text-center bg-blue-500 hover:bg-blue-600 rounded-xl p-2 text-white"
+              %>
+            <% end %>
           </div>
           <div class="flex flex-col p-2">
             <span class="text-xl font-bold px-2 bg-gray-200">
