@@ -1,7 +1,20 @@
-<h1>Products</h1>
-<%= link_to "New_product", new_product_path %>
-<ul>
+<h1 class="text-4xl font-bold p-5 w-fit">Products</h1>
+<% if authenticated? %>
+  <div class = "flex items-center text-xl font-semibold p-2 px-5">
+    <%= 
+      link_to "New Product",
+      new_product_path,
+      class: "bg-blue-500 hover:bg-blue-600 rounded-xl p-2 text-white"
+    %>
+  </div>
+<% end %>
+<ul class="flex-1 flex flex-col self-center p-5 w-full max-w-[100em] bg-white rounded-xl overflow-auto shadow gap-2">
   <% @products.each do |product| %>
-    <li><%= link_to product.name, product %></li>
+    <li class="flex items-center border-1 border-gray-300 rounded-xl w-full p-2 items-center">
+      <% if product.featured_image.attached? %>
+        <%= image_tag product.featured_image, class: "h-60 w-50 object-cover" %>
+      <% end %>
+      <%= link_to product.name.capitalize, product, class: "text-2xl font-semibold w-full h-full px-5" %>
+    </li>
   <% end %>
 </ul>

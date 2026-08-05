@@ -23,7 +23,24 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="h-screen flex flex-col bg-blue-50">
+    <nav class="flex justify-between p-3 px-6 items-center bg-white shadow">
+      <%= 
+        link_to "Home", 
+        root_path, 
+        class: "text-xl font-semibold"
+      %>
+      <% if authenticated? %>
+        <%= 
+          button_to "Logout", 
+          session_path, 
+          method: :delete,
+          class: "text-lg text-white font-semibold rounded-xl bg-blue-500 hover:bg-blue-600 p-2"
+        %>
+      <% end %>
+    </nav>
+    <main class="flex flex-col flex-1">
+      <%= yield %>
+    </main>
   </body>
 </html>
