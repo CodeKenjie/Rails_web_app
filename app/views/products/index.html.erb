@@ -1,5 +1,5 @@
 <h1 class="text-4xl font-bold p-5 w-fit">Products</h1>
-<% if authenticated? %>
+<% if Current.user&.is_seller %>
   <div class = "flex items-center text-xl font-semibold p-2 px-5">
     <%= 
       link_to "New Product",
@@ -24,7 +24,7 @@
             product,
             class: "w-[4em] text-center bg-blue-500 hover:bg-blue-600 rounded-xl p-2 text-white"
           %>
-          <% if authenticated? %>
+          <% if Current.user&.is_seller %>
             <%= 
               link_to "Edit",
               edit_product_path(product),

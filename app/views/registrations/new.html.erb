@@ -1,0 +1,43 @@
+<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+
+<div class="flex-1 flex justify-center items-center">
+    <%= form_with model: @user, url: registration_path, class:"flex flex-col p-10 bg-white shadow w-fit rounded-xl gap-2" do |form| %>
+    <h1 class="text-2xl font-bold">Create Account</h1>
+
+    <%= 
+      form.email_field :email_address,
+      required: true, 
+      autofocus: true, 
+      autocomplete: "username", 
+      placeholder: "Email", 
+      value: params[:email_address], 
+      class: "text-xl border-1 border-gray-300 p-3 w-fit rounded-xl" 
+    %>
+
+    <%= 
+      form.password_field :password,
+      required: true,
+      autocomplete: "new-password", 
+      placeholder: "Password",
+      class: "text-xl border-1 border-gray-300 p-3 w-fit rounded-xl" 
+    %>
+
+    <%= 
+      form.password_field :password_confirmation,
+      required: true,
+      autocomplete: "new-password", 
+      placeholder: "Confirm Password",
+      class: "text-xl border-1 border-gray-300 p-3 w-fit rounded-xl" 
+    %>
+
+    <div class="flex gap-2">
+      <%= form.check_box :attribute_name %>
+      <%= form.label "I accept terms and condition"%>
+    </div>
+    <%= 
+      form.submit "Sign up",
+      class: "text-lg text-white font-semibold rounded-xl bg-blue-500 hover:bg-blue-600 p-2"
+    %>
+  <% end %>
+</div>
