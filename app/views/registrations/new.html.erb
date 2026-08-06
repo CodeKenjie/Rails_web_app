@@ -1,39 +1,41 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<%= tag.div(flash[:alert], class: "flex justify-center items-center bg-red-500 text-white text-xl p-2") if flash[:alert] %>
+<%= tag.div(flash[:notice], class: "flex justify-center items-center bg-green-500 text-white text-xl p-2") if flash[:notice] %>
 
 <div class="flex-1 flex justify-center items-center">
-    <%= form_with model: @user, url: registration_path, class:"flex flex-col p-10 bg-white shadow w-fit rounded-xl gap-2" do |form| %>
+    <%= form_with model: @user, url: registration_path, class:"flex flex-col p-10 bg-white shadow w-full max-w-[30em] rounded-xl gap-2" do |form| %>
     <h1 class="text-2xl font-bold">Create Account</h1>
-
+    <%= form.label :email_address, class: "hidden" %>
     <%= 
       form.email_field :email_address,
       required: true, 
       autofocus: true, 
-      autocomplete: "username", 
+      autocomplete: "email", 
       placeholder: "Email", 
       value: params[:email_address], 
-      class: "text-xl border-1 border-gray-300 p-3 w-fit rounded-xl" 
+      class: "text-xl border-1 border-gray-300 p-3 w-full rounded-xl" 
     %>
 
+    <%= form.label :password, class: "hidden" %>
     <%= 
       form.password_field :password,
       required: true,
       autocomplete: "new-password", 
       placeholder: "Password",
-      class: "text-xl border-1 border-gray-300 p-3 w-fit rounded-xl" 
+      class: "text-xl border-1 border-gray-300 p-3 w-full rounded-xl" 
     %>
 
+    <%= form.label :password_confirmation, class: "hidden" %>
     <%= 
       form.password_field :password_confirmation,
       required: true,
       autocomplete: "new-password", 
       placeholder: "Confirm Password",
-      class: "text-xl border-1 border-gray-300 p-3 w-fit rounded-xl" 
+      class: "text-xl border-1 border-gray-300 p-3 w-full rounded-xl" 
     %>
 
     <div class="flex gap-2">
-      <%= form.check_box :attribute_name %>
-      <%= form.label "I accept terms and condition"%>
+      <%= form.check_box :terms_and_condition, required: true %>
+      <%= form.label :terms_and_condition, "I accept the terms and conditions"%>
     </div>
     <%= 
       form.submit "Sign up",

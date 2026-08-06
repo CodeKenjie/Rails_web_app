@@ -10,11 +10,11 @@
 <% end %>
 <ul class="h-[73em] min-h-0 flex flex-col self-center p-5 w-full max-w-[100em] h- bg-white rounded-xl overflow-y-auto shadow gap-2">
   <% @products.each do |product| %>
-    <li class="flex border-1 border-gray-300 rounded-xl w-full p-2 gap-5">
+    <li class="flex flex-wrap border-1 border-gray-300 rounded-xl w-full p-2 gap-5">
       <% if product.featured_image.attached? %>
         <%= image_tag product.featured_image, class: "h-60 w-50 object-cover" %>
       <% end %>
-      <div class="flex flex-col w-full">
+      <div class="flex-1 flex flex-col">
         <p class="flex-1 text-2xl font-semibold w-full" >
           <%= product.name.capitalize%>
         </p>
